@@ -62,7 +62,7 @@ docker compose restart
 
 ## Documentation
 
-Full docs and one‑liner: https://getfusionaly.com/docs/devbox/
+Full docs and one‑liner: https://fusionaly.com/docs/devbox/
 
 ## Contributing
 
