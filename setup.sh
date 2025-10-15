@@ -154,18 +154,18 @@ print_info "Ensuring admin user ($ADMIN_EMAIL) exists..."
 # Retry user creation with better error handling
 USER_CREATION_SUCCESS=false
 for attempt in {1..3}; do
-  IMCTL_OK=$(run_in_container 'test -x /app/imctl && echo OK || echo MISSING' 2>/dev/null || echo MISSING)
-  if [ "$IMCTL_OK" = "OK" ]; then
-    if run_in_container "/app/imctl create-admin-user '$ADMIN_EMAIL' '$ADMIN_PASSWORD' >/dev/null 2>&1 || /app/imctl change-admin-password '$ADMIN_EMAIL' '$ADMIN_PASSWORD' >/dev/null 2>&1"; then
-      print_status "Admin user ready (via imctl)"
+  FNCTL_OK=$(run_in_container 'test -x /app/fnctl && echo OK || echo MISSING' 2>/dev/null || echo MISSING)
+  if [ "$FNCTL_OK" = "OK" ]; then
+    if run_in_container "/app/fnctl create-admin-user '$ADMIN_EMAIL' '$ADMIN_PASSWORD' >/dev/null 2>&1 || /app/fnctl change-admin-password '$ADMIN_EMAIL' '$ADMIN_PASSWORD' >/dev/null 2>&1"; then
+      print_status "Admin user ready (via fnctl)"
       USER_CREATION_SUCCESS=true
       break
     else
-      print_warn "imctl attempt $attempt failed, retrying..."
+      print_warn "fnctl attempt $attempt failed, retrying..."
       sleep 2
     fi
   else
-    print_warn "imctl not found in container (attempt $attempt)"
+    print_warn "fnctl not found in container (attempt $attempt)"
     sleep 2
   fi
 done
@@ -179,7 +179,7 @@ else
   print_error "CRITICAL: No users detected in database! Admin user creation failed."
   print_error "This will cause the onboarding flow to appear instead of the login page."
   print_info "You can manually create a user by running:"
-  print_info "  cd $WORKDIR && $COMPOSE_CMD exec infinity-web /app/imctl create-admin-user '$ADMIN_EMAIL' '$ADMIN_PASSWORD'"
+  print_info "  cd $WORKDIR && $COMPOSE_CMD exec fusionaly-web /app/fnctl create-admin-user '$ADMIN_EMAIL' '$ADMIN_PASSWORD'"
   print_warn "Continuing anyway, but /admin will redirect to onboarding..."
 fi
 

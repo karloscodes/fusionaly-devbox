@@ -20,12 +20,12 @@
         }
 
         # Proxy app assets, SDK, API and dashboard to the backend
-        reverse_proxy /assets/* infinity-web:8080
-        reverse_proxy /y/* infinity-web:8080
-        reverse_proxy /x/* infinity-web:8080
-        reverse_proxy /admin* infinity-web:8080
+        reverse_proxy /assets/* fusionaly-web:8080
+        reverse_proxy /y/* fusionaly-web:8080
+        reverse_proxy /x/* fusionaly-web:8080
+        reverse_proxy /admin* fusionaly-web:8080
 
         # Fallback proxy
-        reverse_proxy * infinity-web:8080
+        reverse_proxy * fusionaly-web:8080
     }
 }
