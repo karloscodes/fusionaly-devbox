@@ -56,9 +56,12 @@ else
   print_status "Port 8080 available"
 fi
 
-print_info "Using prebuilt Fusionaly image..."
-docker pull karloscodes/fusionaly-beta:latest >/dev/null || true
-print_status "Image ready"
+print_info "Pulling latest Fusionaly image..."
+if docker pull karloscodes/fusionaly-beta:latest; then
+  print_status "Latest image pulled successfully"
+else
+  print_warn "Could not pull latest image, using cached version"
+fi
 
 # Ensure compose files exist; if not, fetch them to current directory
 REPO_RAW_BASE="https://raw.githubusercontent.com/karloscodes/fusionaly-devbox/refs/heads/main"

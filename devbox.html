@@ -742,11 +742,11 @@
         }, () => {/* ignore */ }, { enableHighAccuracy: false, timeout: 2000, maximumAge: 600000 });
       }
 
-      const hasSDK = () => (typeof window !== 'undefined' && window.Fusionaly);
+      const hasSDK = () => (typeof window !== 'undefined' && window.InfinityMetrics);
 
       document.getElementById('btn-custom').addEventListener('click', () => {
-        if (hasSDK() && Fusionaly.sendCustomEvent) {
-          Fusionaly.sendCustomEvent('button_click', { source: 'devbox', variant: 'custom' });
+        if (hasSDK() && InfinityMetrics.sendCustomEvent) {
+          InfinityMetrics.sendCustomEvent('button_click', { source: 'devbox', variant: 'custom' });
           log("✓ Custom event sent: button_click");
           log("→ Metadata: {source: 'devbox', variant: 'custom'}");
           if (window.__IM_BG_PULSE) window.__IM_BG_PULSE();
@@ -756,8 +756,8 @@
       });
 
       document.getElementById('btn-purchase').addEventListener('click', () => {
-        if (hasSDK() && Fusionaly.registerPurchase) {
-          Fusionaly.registerPurchase(1999, 'USD', { sku: 'devbox_pro', qty: 1 });
+        if (hasSDK() && InfinityMetrics.registerPurchase) {
+          InfinityMetrics.registerPurchase(1999, 'USD', { sku: 'devbox_pro', qty: 1 });
           log("✓ Purchase registered: $19.99 USD");
           log("→ SKU: devbox_pro | Quantity: 1");
           if (window.__IM_BG_PULSE) window.__IM_BG_PULSE();
@@ -767,8 +767,8 @@
       });
 
       document.getElementById('btn-send-pv').addEventListener('click', () => {
-        if (hasSDK() && Fusionaly.sendPageView) {
-          Fusionaly.sendPageView();
+        if (hasSDK() && InfinityMetrics.sendPageView) {
+          InfinityMetrics.sendPageView();
           log("✓ Page view tracked for current path");
           if (window.__IM_BG_PULSE) window.__IM_BG_PULSE();
         } else {
