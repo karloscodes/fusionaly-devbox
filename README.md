@@ -18,11 +18,9 @@ curl -fsSL https://raw.githubusercontent.com/karloscodes/fusionaly-devbox/refs/h
 
 - Full Fusionaly server (Docker) via Caddy
 - Beautiful demo at `/` with interactive event buttons
-- Extra subpage at `/alt.html` to register a page view on a different path
 - Admin dashboard under `/admin`
 - Runs on http://localhost:8080 (no HTTPS needed)
 - No license required — DevBox runs in test mode with a test key
-  - Test key: IM-DEVBOX-TEST-ONLY (guarded; DevBox aborts if not in test mode)
 
 ## Manual Setup (clone + run)
 
